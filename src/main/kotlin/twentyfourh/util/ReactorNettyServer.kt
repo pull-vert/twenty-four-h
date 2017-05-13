@@ -37,8 +37,8 @@ class ReactorNettyServer(hostname: String, port: Int, val baseUri: String) : Ser
     }
 
     override fun afterPropertiesSet() {
-        val routesProvider = appContext.getBeansOfType(RouterFunctionProvider::class).values as Collection<RouterFunctionProvider>
-        val router = routesProvider.map { it.invoke() }.reduce(RouterFunction<ServerResponse>::and)
+        val routesProvider = appContext.getBeansOfType(RouterFunctionProvider::class).values
+        val router = routesProvider.map { (it as RouterFunctionProvider).invoke() }.reduce(RouterFunction<ServerResponse>::and)
         val webHandler = RouterFunctions.toHttpHandler(router)
         val httpHandler = WebHttpHandlerBuilder.webHandler(webHandler).build()
         reactorHandler = ReactorHttpHandlerAdapter(httpHandler)
