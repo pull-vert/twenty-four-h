@@ -16,33 +16,26 @@ import twentyfourh.web.security.SecurityHandlerFilterFunction
  */
 fun context(port: Int?, hostname: String) = AnnotationConfigApplicationContext {
     environment.addPropertySource("application.properties")
+
+    // MongoDB
 //    registerBean { ReactiveMongoTemplate(SimpleReactiveMongoDatabaseFactory(
 //            ConnectionString(it.environment.getProperty("mongo.uri"))))
 //    }
 //    registerBean { ReactiveMongoRepositoryFactory(it.getBean<ReactiveMongoTemplate>()) }
+
+    // Reactor Netty Server
     registerBean { ReactorNettyServer(hostname, port ?: it.environment.getProperty("server.port").toInt()) }
-//
-//    registerBean { MarkdownConverter() }
 
     // Security
     registerBean { JwtUtil(it.environment.getRequiredProperty("jwt.secret"), it.environment.getRequiredProperty("jwt.hours.validity").toInt()) }
     registerBean<SecurityHandlerFilterFunction>()
 
+    // Repositories
     registerBean<MessageRepository>()
-//    registerBean<UserRepository>()
-//    registerBean<EventRepository>()
-//    registerBean<TalkRepository>()
-//    registerBean<PostRepository>()
 
+    // Web handlers
     registerBean<MessageHandler>()
 
-
+    // Web routes
     registerBean<ApiRoutes>()
-//    registerBean<BlogController>()
-//    registerBean<UserController>()
-//    registerBean<EventController>()
-//    registerBean<TalkController>()
-//    registerBean<NewsController>()
-//    registerBean<GlobalController>()
-//    registerBean<RedirectController>()
 }
