@@ -11,8 +11,10 @@ import twentyfourh.web.handlers.MessageHandler
 class ApiRoutes(val messageHandler: MessageHandler) : RouterFunctionProvider() {
 
     override val routes: Routes = {
-        ("/api/message" and accept(APPLICATION_JSON)).nest {
-            GET("/", messageHandler::findAll)
+        (accept(APPLICATION_JSON) and "/api").nest {
+            "/message".nest {
+                GET("/", messageHandler::findAll)
+            }
         }
     }
 }

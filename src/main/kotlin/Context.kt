@@ -8,6 +8,8 @@ import twentyfourh.util.ReactorNettyServer
 import twentyfourh.util.addPropertySource
 import twentyfourh.web.handlers.MessageHandler
 import twentyfourh.web.routes.ApiRoutes
+import twentyfourh.web.security.JwtUtil
+import twentyfourh.web.security.SecurityHandlerFilterFunction
 
 /**
  * Created by Fred on 12/05/2017.
@@ -18,9 +20,13 @@ fun context(port: Int?, hostname: String) = AnnotationConfigApplicationContext {
 //            ConnectionString(it.environment.getProperty("mongo.uri"))))
 //    }
 //    registerBean { ReactiveMongoRepositoryFactory(it.getBean<ReactiveMongoTemplate>()) }
-    registerBean { ReactorNettyServer(hostname, port ?: it.environment.getProperty("server.port").toInt(), it.environment.getProperty("baseUri")) }
+    registerBean { ReactorNettyServer(hostname, port ?: it.environment.getProperty("server.port").toInt()) }
 //
 //    registerBean { MarkdownConverter() }
+
+    // Security
+    registerBean { JwtUtil(it.environment.getRequiredProperty("jwt.secret"), it.environment.getRequiredProperty("jwt.hours.validity").toInt()) }
+    registerBean<SecurityHandlerFilterFunction>()
 
     registerBean<MessageRepository>()
 //    registerBean<UserRepository>()

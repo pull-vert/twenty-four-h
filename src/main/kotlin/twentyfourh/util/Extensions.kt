@@ -17,6 +17,7 @@ import twentyfourh.model.Language
 import java.net.URI
 import java.nio.charset.StandardCharsets
 import java.text.Normalizer
+import java.time.Instant
 import java.time.LocalDateTime
 import java.time.ZoneOffset
 import java.time.ZonedDateTime
@@ -94,6 +95,7 @@ fun LocalDateTime.formatTalkTime(language: Language): String =
 
 fun LocalDateTime.toRFC3339(): String = ZonedDateTime.of(this, ZoneOffset.UTC) .format(rfc3339Formatter)
 
+fun Instant.toDate(): Date = Date.from(this)
 
 private val daysLookup: Map<Long, String> =
         IntStream.rangeClosed(1, 31).boxed().collect(Collectors.toMap(Int::toLong, ::getOrdinal))

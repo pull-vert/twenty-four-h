@@ -11,6 +11,7 @@ import org.springframework.web.reactive.function.server.ServerResponse
 import org.springframework.web.server.adapter.WebHttpHandlerBuilder
 import reactor.ipc.netty.NettyContext
 import reactor.ipc.netty.http.server.HttpServer
+import twentyfourh.web.security.SecurityHandlerFilterFunction
 import java.util.concurrent.atomic.AtomicReference
 
 interface Server {
@@ -19,7 +20,7 @@ interface Server {
     val isRunning: Boolean
 }
 
-class ReactorNettyServer(hostname: String, port: Int, val baseUri: String) : Server, ApplicationContextAware, InitializingBean {
+class ReactorNettyServer(hostname: String, port: Int) : Server, ApplicationContextAware, InitializingBean {
 
     override val isRunning: Boolean
         get() {
@@ -38,7 +39,11 @@ class ReactorNettyServer(hostname: String, port: Int, val baseUri: String) : Ser
 
     override fun afterPropertiesSet() {
         val routesProvider = appContext.getBeansOfType(RouterFunctionProvider::class).values
-        val router = routesProvider.map { (it as RouterFunctionProvider).invoke() }.reduce(RouterFunction<ServerResponse>::and)
+        val securityHandlerFilterFunction = appContext.getBean(SecurityHandlerFilterFunction::class.java)
+        val router = routesProvider
+                .map { (it as RouterFunctionProvider).invoke() }
+                .reduce(RouterFunction<ServerResponse>::and)
+                .filter(securityHandlerFilterFunction::filter)
         val webHandler = RouterFunctions.toHttpHandler(router)
         val httpHandler = WebHttpHandlerBuilder.webHandler(webHandler).build()
         reactorHandler = ReactorHttpHandlerAdapter(httpHandler)
