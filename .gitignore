@@ -7,10 +7,11 @@
 .idea/
 *.iml
 
-// others
-build/
+# others
+/build/
 *.ipr
 *.iws
 *.log
 .gradle/
 classes/
+out/
