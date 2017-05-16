@@ -12,5 +12,6 @@ Simple social media with one message a day only.
 
 Mixit without Spring Boot branch :
 https://github.com/mixitconf/mixit/tree/functional-bean-registration
+
 Mixit up to date reference :
 https://github.com/mixitconf/mixit/tree/master
