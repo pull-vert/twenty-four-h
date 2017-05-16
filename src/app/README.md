@@ -6,6 +6,8 @@ The app was originally built with the [Vue CLI Webpack template](https://github.
 
 The server side is a REST API built with [Spring](https://spring.io/) JVM framework.
 
+Using [Bootstrap-Vue](https://bootstrap-vue.github.io/docs/components/)
+
 ## Commands
 
 ``` bash
