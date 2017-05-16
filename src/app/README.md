@@ -1,4 +1,4 @@
-# Vue.js standup app
+# Vue.js twenty-four-h
 
 A small Vue.js 2.0 frontend app for Simple social media with one message a day only. It is built with Webpack and runs tests with Karma + Jasmine.
 
