@@ -1,10 +1,10 @@
 # Vue.js standup app
 
-A small Vue.js 2.0 frontend app for a daily standup application. It is built with Webpack and runs tests with Karma + Jasmine.
+A small Vue.js 2.0 frontend app for Simple social media with one message a day only. It is built with Webpack and runs tests with Karma + Jasmine.
 
 The app was originally built with the [Vue CLI Webpack template](https://github.com/vuejs-templates/webpack)
 
-The server side is a REST API built with [Spring](https://spring.io/) JVM framework.
+The server side is a REST API built with [Spring](https://spring.io/) JVM framework (in Kotlin).
 
 Using [Bootstrap-Vue](https://bootstrap-vue.github.io/docs/components/)
 
