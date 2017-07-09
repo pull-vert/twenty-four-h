@@ -5,6 +5,7 @@ import org.springframework.beans.factory.getBeansOfType
 import org.springframework.context.ApplicationContext
 import org.springframework.context.ApplicationContextAware
 import org.springframework.http.server.reactive.ReactorHttpHandlerAdapter
+import org.springframework.web.reactive.function.server.HandlerStrategies
 import org.springframework.web.reactive.function.server.RouterFunction
 import org.springframework.web.reactive.function.server.RouterFunctions
 import org.springframework.web.reactive.function.server.ServerResponse
@@ -38,13 +39,13 @@ class ReactorNettyServer(hostname: String, port: Int) : Server, ApplicationConte
     }
 
     override fun afterPropertiesSet() {
-        val routesProvider = appContext.getBeansOfType(RouterFunctionProvider::class).values
+        val routesProvider = appContext.getBeansOfType(RouterFunctionProvider::class.javaObjectType).values
         val securityHandlerFilterFunction = appContext.getBean(SecurityHandlerFilterFunction::class.java)
         val router = routesProvider
                 .map { (it as RouterFunctionProvider).invoke() }
                 .reduce(RouterFunction<ServerResponse>::and)
                 .filter(securityHandlerFilterFunction::filter)
-        val webHandler = RouterFunctions.toHttpHandler(router)
+        val webHandler = RouterFunctions.toWebHandler(router, HandlerStrategies.withDefaults())
         val httpHandler = WebHttpHandlerBuilder.webHandler(webHandler).build()
         reactorHandler = ReactorHttpHandlerAdapter(httpHandler)
     }

@@ -1,8 +1,8 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
-	extra["spring.version"] = "5.0.0.RC1"
-    extra["reactor-bom.version"] = "Bismuth-M1"
+	extra["spring.version"] = "5.0.0.RC2"
+    extra["reactor-bom.version"] = "Bismuth-M2"
 
     repositories {
         mavenCentral()
@@ -11,15 +11,15 @@ buildscript {
     }
 
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.BUILD-SNAPSHOT")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.M2")
     }
 }
 
 plugins {
-    val kotlinVersion = "1.1.2-2"
+    val kotlinVersion = "1.1.3-2"
     id("org.jetbrains.kotlin.jvm") version kotlinVersion
     id("org.jetbrains.kotlin.plugin.noarg") version kotlinVersion
-    id("io.spring.dependency-management") version "1.0.2.RELEASE"
+    id("io.spring.dependency-management") version "1.0.3.RELEASE"
 }
 
 apply {
@@ -65,7 +65,7 @@ dependencies {
 
     compile("com.fasterxml.jackson.module:jackson-module-kotlin")
 
-    testCompile("io.projectreactor.addons:reactor-test")
+    testCompile("io.projectreactor:reactor-test")
 
     testCompile("junit:junit")
 }
