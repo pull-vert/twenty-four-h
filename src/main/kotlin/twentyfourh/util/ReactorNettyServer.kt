@@ -1,7 +1,6 @@
 package twentyfourh.util
 
 import org.springframework.beans.factory.InitializingBean
-import org.springframework.beans.factory.getBeansOfType
 import org.springframework.context.ApplicationContext
 import org.springframework.context.ApplicationContextAware
 import org.springframework.http.server.reactive.ReactorHttpHandlerAdapter
