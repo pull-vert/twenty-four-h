@@ -1,8 +1,5 @@
 import org.springframework.context.annotation.AnnotationConfigApplicationContext
 import org.springframework.context.support.registerBean
-import org.springframework.beans.factory.getBean
-import org.springframework.data.mongodb.core.ReactiveMongoTemplate
-import org.springframework.data.mongodb.repository.support.ReactiveMongoRepositoryFactory
 import twentyfourh.repositories.MessageRepository
 import twentyfourh.util.ReactorNettyServer
 import twentyfourh.util.addPropertySource
