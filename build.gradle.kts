@@ -1,13 +1,12 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 buildscript {
-	extra["spring.version"] = "5.0.0.RC2"
-    extra["reactor-bom.version"] = "Bismuth-M2"
+	extra["spring.version"] = "5.0.0.RC3"
 
     repositories {
         mavenCentral()
         maven { setUrl("https://repo.spring.io/milestone") }
-        maven { setUrl("https://repo.spring.io/snapshot") }
+//        maven { setUrl("https://repo.spring.io/snapshot") }
     }
 
     dependencies {
@@ -18,7 +17,6 @@ buildscript {
 plugins {
     val kotlinVersion = "1.1.3-2"
     id("org.jetbrains.kotlin.jvm") version kotlinVersion
-    id("org.jetbrains.kotlin.plugin.noarg") version kotlinVersion
     id("io.spring.dependency-management") version "1.0.3.RELEASE"
 }
 
@@ -38,10 +36,6 @@ tasks.withType<KotlinCompile> {
     kotlinOptions {
         jvmTarget = "1.8"
     }
-}
-
-noArg {
-    annotation("org.springframework.data.mongodb.core.mapping.Document")
 }
 
 dependencies {
