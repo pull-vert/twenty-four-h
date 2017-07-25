@@ -6,7 +6,7 @@ The app was originally built with the [Vue CLI Webpack simple template](https://
 
 The server side is a REST API built with [Spring](https://spring.io/) JVM framework (in Kotlin).
 
-Using [Bootstrap-Vue](https://bootstrap-vue.github.io/docs/components/)
+Using [Bootstrap-Vue components](https://bootstrap-vue.github.io/docs/components/)
 
 ## Commands
 
