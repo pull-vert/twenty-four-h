@@ -2,7 +2,7 @@
 
 A small Vue.js 2.0 frontend app for Simple social media with one message a day only. It is built with Webpack and runs tests with Karma + Jasmine.
 
-The app was originally built with the [Vue CLI Webpack template](https://github.com/vuejs-templates/webpack)
+The app was originally built with the [Vue CLI Webpack simple template](https://github.com/vuejs-templates/webpack-simple)
 
 The server side is a REST API built with [Spring](https://spring.io/) JVM framework (in Kotlin).
 
@@ -18,11 +18,7 @@ npm install
 npm run dev
 
 # build for production with minification
-# the output files end up in the src/ratpack/static folder for exclusion in the Ratpack executable JAR file.
 npm run build
-
-# run unit tests
-npm run test
 ```
 
 **Inspired by :**
