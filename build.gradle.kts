@@ -10,7 +10,7 @@ buildscript {
     }
 
     dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.M2")
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:2.0.0.M3")
     }
 }
 
@@ -61,5 +61,6 @@ dependencies {
 
     testCompile("io.projectreactor:reactor-test")
 
-    testCompile("junit:junit")
+//    testCompile("junit:junit")
+    testCompile("org.junit.jupiter:junit-jupiter-api:5.0.0-M6")
 }
